@@ -1,7 +1,3 @@
-
-
-### `README.md`
-
 # Prometheus and Grafana Setup
 
 This repository contains a `podman-compose` setup for running Prometheus and Grafana to monitor metrics from a custom target.
