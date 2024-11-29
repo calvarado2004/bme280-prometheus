@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: bme280-service
+  namespace: default
+subsets:
+  - addresses:
+      - ip: 192.168.11.109
+    ports:
+      - port: 8080
+        name: http
+        protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bme280-service
+  namespace: default
+  labels:
+    app: bme280-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: http
+  clusterIP: None # Headless service
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: bme280-monitor
+  namespace: openshift-user-workload-monitoring
+spec:
+  selector:
+    matchLabels:
+      app: bme280-service # Match the label in the Service
+  namespaceSelector:
+    matchNames:
+      - default # Match the namespace of the Service
+  endpoints:
+    - port: http # Match the port name in the Service
+      path: /metrics
+      interval: 10s
