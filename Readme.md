@@ -1,5 +1,8 @@
 # Prometheus and Grafana Setup
 
+<img width="1910" alt="Screenshot 2024-11-29 at 6 52 32 PM" src="https://github.com/user-attachments/assets/5775a913-a625-49ca-a91f-4b7065f38301">
+
+
 This repository contains a `podman-compose` setup for running Prometheus and Grafana to monitor metrics from a custom target.
 
 ## Table of Contents
